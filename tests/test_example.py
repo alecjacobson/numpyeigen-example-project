@@ -12,13 +12,27 @@ class TestExample(unittest.TestCase):
         from example import example_function
         import numpy as np
 
-        # v is a nv by 3 NumPy array of vertices
-        # f is an nf by 3 NumPy array of face indexes into v
-        # n is a nv by 3 NumPy array of vertex normals if they are specified, otherwise an empty array
-        a1, a2 = np.random.rand(100, 3), np.random.rand(100, 5)
+        # array of 100 random int32 numbers
+        a1 = np.random.randint(0, 100, 100).astype(np.int32)
+        a2 = np.random.randint(0, 100, 100).astype(np.int32)
         b1, b2 = example_function(a1, a2)
         self.assertTrue(np.all(a1 == b1))
         self.assertTrue(np.all(a2 == b2))
+
+        # array of 100 random int64 numbers
+        a1 = np.random.randint(0, 100, 100).astype(np.int64)
+        a2 = np.random.randint(0, 100, 100).astype(np.int64)
+        b1, b2 = example_function(a1, a2)
+        self.assertTrue(np.all(a1 == b1))
+        self.assertTrue(np.all(a2 == b2))
+
+        for dtype_str in ["intc", "int", "long", "longlong"]:
+            a1 = np.random.randint(0, 100, 100,dtype=dtype_str)
+            a2 = np.random.randint(0, 100, 100,dtype=dtype_str)
+            b1, b2 = example_function(a1, a2)
+            self.assertTrue(np.all(a1 == b1))
+            self.assertTrue(np.all(a2 == b2))
+
 
 
 if __name__ == '__main__':
