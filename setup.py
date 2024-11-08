@@ -40,7 +40,7 @@ class CMakeBuild(build_ext):
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
-        extdir = os.path.join(extdir, "example")
+        extdir = os.path.join(extdir, "my_module")
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir, '-DPYTHON_EXECUTABLE=' + sys.executable]
         cmake_args.extend(ext.cmake_args)
 
@@ -88,7 +88,7 @@ def main():
 
     # The name of your module (directory with an __init__.py). We'll build a C++ extension inside this directory
     # which you can import inside __init__.py
-    module_name = 'example'
+    module_name = 'my_module'
 
     setuptools.setup(
         name="numpyeigen-example-project",                     # Full name of your project

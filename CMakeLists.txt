@@ -13,8 +13,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(EXTERNAL_DEP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
 include(DownloadExternalDeps)
 download_dep(numpyeigen
-  GIT_REPOSITORY https://github.com/alecjacobson/numpyeigen.git
-  GIT_TAG 09502a93833a92816fc241a562a75cb7e6443f57
+  GIT_REPOSITORY https://github.com/fwilliams/numpyeigen.git
+  GIT_TAG 6ad0c04f0e18726cdb6582b74ff048286be14198
 )
 list(APPEND CMAKE_MODULE_PATH ${EXTERNAL_DEP_DIR}/numpyeigen/cmake)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -29,7 +29,7 @@ include(numpyeigen) # This will define Eigen3::Eigen if we enabled NPE_WITH_EIGE
 # You can import functions from the internal module in example/__init__.py to publically expose them
 npe_add_module(_example_internal
   BINDING_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/example.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/foo.cpp
   )
 set_target_properties(_example_internal PROPERTIES COMPILE_FLAGS "-fvisibility=hidden -msse3")
 
